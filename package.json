@@ -1,13 +1,13 @@
 {
   "name": "telegram-mini-app-bot",
   "version": "1.0.0",
-  "description": "Telegram Mini App Backend Bot",
+  "description": "Premium Viral Links Backend Server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.19.2",
-    "telegraf": "^4.16.3"
+    "node-telegram-bot-api": "^0.66.0"
   }
 }
