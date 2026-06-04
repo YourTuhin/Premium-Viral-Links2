@@ -6,6 +6,9 @@ const app = express();
 const token = process.env.BOT_TOKEN;
 const webAppUrl = process.env.WEBAPP_URL;
 
+// 🌟 এখানে আপনার ব্যানারের বা ফটোর ডাইরেক্ট লিংকটি বসাবেন (লিংকের শেষে যেন .jpg বা .png থাকে)
+const BOT_WELCOME_IMAGE = "https://i.postimg.cc/MG0G8JsG/file-00000000b0587209893e8bdeacdded49.png"; 
+
 // এক্সপ্রেস সার্ভার সেটআপ (Render-এ অ্যাপ সচল রাখার জন্য বাধ্যতামূলক)
 const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {
@@ -36,37 +39,43 @@ bot.onText(/\/start(.*)/, (msg, match) => {
 
     // ১. কোনো প্যারামিটার ছাড়া সাধারণ /start দিলে
     if (!startPayload) {
-        return bot.sendMessage(chatId, "👋 প্রিমিয়াম ভাইরাল লিংকে স্বাগতম!\n\n১৮+ প্রিমিয়াম ভিডিওগুলো দেখতে এবং আনলক করতে নিচের **Open App** বাটনে ক্লিক করুন। 🍿", {
+        return bot.sendPhoto(chatId, BOT_WELCOME_IMAGE, {
+            caption: "👋 **Arohi Mim এর নতুন💋 আসল ভিডিও পুরা আগুন ভাই!**\n\n১৮+ প্রিমিয়াম ভিডিওগুলো দেখতে এবং আনলক করতে নিচের **Open App** বাটনে ক্লিক করুন। 🍿",
+            parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: "Open App 🚀", web_app: { url: webAppUrl } }]
+                    [{ text: "এখনই দেখুন 🚀", web_app: { url: webAppUrl } }]
                 ]
             }
-        }).catch(err => console.error("Error sending message:", err));
+        }).catch(err => console.error("Error sending photo:", err));
     }
 
     // ২. যদি ইউজার কোনো রেফারেল লিংকে ক্লিক করে আসে (ref_xxx)
     if (startPayload.startsWith('ref_')) {
-        return bot.sendMessage(chatId, "🎉 আপনি একজন ইউজারের রেফারেল লিংকে জয়েন করেছেন!\n\nএখন অ্যাপটি ওপেন করে ভিডিও দেখা শুরু করুন: 👇", {
+        return bot.sendPhoto(chatId, BOT_WELCOME_IMAGE, {
+            caption: "🎉 **আপনি একজন ইউজারের রেফারেল লিংকে জয়েন করেছেন!**\n\nএখন অ্যাপটি ওপেন করে ভিডিও দেখা শুরু করুন: 👇",
+            parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
                     [{ text: "Open App 🚀", web_app: { url: webAppUrl } }]
                 ]
             }
-        }).catch(err => console.error("Error sending message:", err));
+        }).catch(err => console.error("Error sending photo:", err));
     }
 
     // ৩. যদি ইউজার কোনো স্পেসিফিক ফাইল লিংকে ক্লিক করে আসে (file_xxx)
     if (startPayload.startsWith('file_')) {
         // ফাইল আইডিটি আলাদা করে মিনি অ্যাপে পাঠানো হচ্ছে যেন অ্যাপে সরাসরি ওই ফাইলটি ওপেন হয়
         const finalUrl = `${webAppUrl}?tgWebAppStartParam=${startPayload}`;
-        return bot.sendMessage(chatId, "🎬 আপনার কাঙ্ক্ষিত ভিডিওটি রেডি আছে!\n\nনিচের বাটনে ক্লিক করে সরাসরি ভিডিওটি আনলক করে উপভোগ করুন: 👇", {
+        return bot.sendPhoto(chatId, BOT_WELCOME_IMAGE, {
+            caption: "🎬 **আপনার কাঙ্ক্ষিত ভিডিওটি রেডি আছে!**\n\nনিচের বাটনে ক্লিক করে সরাসরি ভিডিওটি আনলক করে উপভোগ করুন: 👇",
+            parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
                     [{ text: "ভিডিওটি দেখুন 🍿", web_app: { url: finalUrl } }]
                 ]
             }
-        }).catch(err => console.error("Error sending message:", err));
+        }).catch(err => console.error("Error sending photo:", err));
     }
 });
 
