@@ -40,7 +40,7 @@ bot.onText(/\/start(.*)/, (msg, match) => {
     // ১. কোনো প্যারামিটার ছাড়া সাধারণ /start দিলে
     if (!startPayload) {
         return bot.sendPhoto(chatId, BOT_WELCOME_IMAGE, {
-            caption: "👋 **Arohi Mim এর নতুন💋 আসল ভিডিও পুরা আগুন ভাই!**\n\n১৮+ প্রিমিয়াম ভিডিওগুলো দেখতে এবং আনলক করতে নিচের **Open App** বাটনে ক্লিক করুন। 🍿",
+            caption: "👋 **Arohi Mim এর নতুন💋 আসল ভিডিও পুরা আগুন ভাই!**\n\n১৮+ প্রিমিয়াম ভিডিওগুলো দেখতে এবং আনলক করতে নিচের **এখনই দেখুন** বাটনে ক্লিক করুন। 🍿",
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
@@ -57,7 +57,7 @@ bot.onText(/\/start(.*)/, (msg, match) => {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: "Open App 🚀", web_app: { url: webAppUrl } }]
+                    [{ text: "এখনই দেখুন 🚀", web_app: { url: webAppUrl } }]
                 ]
             }
         }).catch(err => console.error("Error sending photo:", err));
